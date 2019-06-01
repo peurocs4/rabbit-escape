@@ -5,7 +5,7 @@ import static rabbitescape.engine.ChangeDescription.State.*;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Exit extends Thing
+public class Exit extends Environment
 {
     World world;
 

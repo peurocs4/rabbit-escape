@@ -1,5 +1,6 @@
 package rabbitescape.engine;
 
+import rabbitescape.engine.things.Character;
 import rabbitescape.engine.util.Position;
 
 public class BridgeTools
@@ -7,9 +8,9 @@ public class BridgeTools
 
     public static boolean someoneIsBridgingAt( World world, int x, int y )
     {
-        for ( Rabbit rabbit : world.rabbits )
+        for ( Character character : world.rabbits )
         {
-            if ( rabbitIsBridgingAt( rabbit, x, y ) )
+            if ( rabbitIsBridgingAt( character, x, y ) )
             {
                 return true;
             }
@@ -17,10 +18,10 @@ public class BridgeTools
         return false;
     }
 
-    public static boolean rabbitIsBridgingAt( Rabbit rabbit, int x, int y )
+    public static boolean rabbitIsBridgingAt( Character character, int x, int y )
     {
         Position bridging = RabbitStates.whereBridging(
-            new StateAndPosition( rabbit.state, rabbit.x, rabbit.y ) );
+            new StateAndPosition( character.state, character.x, character.y ) );
 
         if ( bridging == null )
         {

@@ -20,15 +20,11 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import rabbitescape.engine.Block;
-import rabbitescape.engine.Entrance;
-import rabbitescape.engine.Exit;
-import rabbitescape.engine.Fire;
-import rabbitescape.engine.Pipe;
-import rabbitescape.engine.Rabbit;
-import rabbitescape.engine.Thing;
+import rabbitescape.engine.*;
 import rabbitescape.engine.items.*;
-import rabbitescape.engine.VoidMarkerStyle;
+import rabbitescape.engine.things.Character;
+import rabbitescape.engine.things.characters.Rabbit;
+import rabbitescape.engine.things.characters.Rabbot;
 import rabbitescape.engine.util.Dimension;
 import rabbitescape.engine.util.MegaCoder;
 import rabbitescape.engine.util.Position;
@@ -82,7 +78,7 @@ public class LineProcessor
         "(.*)\\.(\\d{1,3})" );
 
     private final List<Block> blocks;
-    private final List<Rabbit> rabbits;
+    private final List<Character> characters;
     private final List<Thing> things;
     private final Map<Position, Integer> waterAmounts;
     private final Map<ItemType, Integer> abilities;
@@ -102,7 +98,7 @@ public class LineProcessor
 
     public LineProcessor(
         List<Block> blocks,
-        List<Rabbit> rabbits,
+        List<Character> characters,
         List<Thing> things,
         Map<Position, Integer> waterAmounts,
         Map<ItemType, Integer> abilities,
@@ -111,7 +107,7 @@ public class LineProcessor
     )
     {
         this.blocks = blocks;
-        this.rabbits = rabbits;
+        this.characters = characters;
         this.things = things;
         this.waterAmounts = waterAmounts;
         this.abilities = abilities;
@@ -545,30 +541,30 @@ public class LineProcessor
             }
             case 'r':
             {
-                Rabbit r = new Rabbit( x, y, RIGHT, Rabbit.Type.RABBIT );
+                Rabbit r = new Rabbit( x, y, RIGHT);
                 ret = r;
-                rabbits.add( r );
+                characters.add( r );
                 break;
             }
             case 'j':
             {
-                Rabbit r = new Rabbit( x, y, LEFT, Rabbit.Type.RABBIT );
+                Rabbit r = new Rabbit( x, y, LEFT);
                 ret = r;
-                rabbits.add( r );
+                characters.add( r );
                 break;
             }
             case 't':
             {
-                Rabbit r = new Rabbit( x, y, RIGHT, Rabbit.Type.RABBOT );
+                Rabbot r = new Rabbot( x, y, RIGHT);
                 ret = r;
-                rabbits.add( r );
+                characters.add( r );
                 break;
             }
             case 'y':
             {
-                Rabbit r = new Rabbit( x, y, LEFT, Rabbit.Type.RABBOT );
+                Rabbot r = new Rabbot( x, y, LEFT);
                 ret = r;
-                rabbits.add( r );
+                characters.add( r );
                 break;
             }
             case 'Q':

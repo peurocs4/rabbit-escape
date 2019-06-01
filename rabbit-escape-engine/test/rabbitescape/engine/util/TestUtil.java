@@ -24,12 +24,12 @@ import java.util.TreeSet;
 import org.junit.Test;
 
 import rabbitescape.engine.Direction;
-import rabbitescape.engine.Rabbit;
 import rabbitescape.engine.Thing;
 import rabbitescape.engine.items.BashItem;
 import rabbitescape.engine.items.BridgeItem;
 import rabbitescape.engine.items.Item;
 import rabbitescape.engine.items.ItemType;
+import rabbitescape.engine.things.characters.Rabbit;
 
 public class TestUtil
 {
@@ -1088,7 +1088,7 @@ public class TestUtil
         };
 
         Rabbit[] rabbits = new Rabbit[]
-            { new Rabbit( 3, 3, Direction.LEFT, Rabbit.Type.RABBIT ) };
+            { new Rabbit( 3, 3, Direction.LEFT ) };
 
         Iterable<Thing> chained = Util.chain( Arrays.asList( items ), Arrays.asList( rabbits ) );
 

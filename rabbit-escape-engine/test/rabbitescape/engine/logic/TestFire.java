@@ -233,7 +233,7 @@ public class TestFire
 
     /**
      * A slightly complicated scenario where a fire is extinguished by water. In
-     * order to check the fire has gone, a rabbit is used (sacrificed) to
+     * order to check the fire has gone, a character is used (sacrificed) to
      * redirect the water away from the spot where the fire was, in order to
      * prove that it is now empty.
      */
@@ -300,7 +300,7 @@ public class TestFire
             "    #" + "\n" +
             "# ###" + "\n" +
             "# #Pn" + "\n" +
-            "#\\ Rn" + "\n" + // The rabbit drowns here.
+            "#\\ Rn" + "\n" + // The character drowns here.
             "###nn" + "\n" +
             "   n#",
 

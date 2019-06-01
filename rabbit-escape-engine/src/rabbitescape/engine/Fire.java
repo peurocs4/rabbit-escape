@@ -7,7 +7,7 @@ import java.util.Map;
 
 import rabbitescape.engine.ChangeDescription.State;
 
-public class Fire extends Thing
+public class Fire extends Environment
 {
     public int variant;
 

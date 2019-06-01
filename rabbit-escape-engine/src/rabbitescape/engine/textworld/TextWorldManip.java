@@ -13,8 +13,8 @@ import java.util.Map;
 
 import rabbitescape.engine.Block;
 import rabbitescape.engine.ChangeDescription;
+import rabbitescape.engine.things.Character;
 import rabbitescape.engine.IgnoreWorldStatsListener;
-import rabbitescape.engine.Rabbit;
 import rabbitescape.engine.Thing;
 import rabbitescape.engine.VoidMarkerStyle;
 import rabbitescape.engine.World;
@@ -107,9 +107,6 @@ public class TextWorldManip
         return createWorldWithName( "", statsListener, lines );
     }
 
-    /**
-     * @param encode if true, create a world with obfuscated hints and solutions
-     */
     public static World createWorldWithName(
         String nameIfNoneSupplied,
         WorldStatsListener statsListener,
@@ -117,7 +114,7 @@ public class TextWorldManip
     )
     {
         List<Block> blocks = new ArrayList<>();
-        List<Rabbit> rabbits = new ArrayList<>();
+        List<Character> rabbits = new ArrayList<>();
         List<Thing> things = new ArrayList<>();
         Map<Position, Integer> waterAmounts = new HashMap<>();
         Map<ItemType, Integer> abilities = new HashMap<>();
@@ -157,7 +154,7 @@ public class TextWorldManip
         String nameIfNoneSupplied,
         WorldStatsListener statsListener,
         List<Block> blocks,
-        List<Rabbit> rabbits,
+        List<Character> characters,
         List<Thing> things,
         Map<Position, Integer> waterAmounts,
         Map<ItemType, Integer> abilities,
@@ -169,7 +166,7 @@ public class TextWorldManip
         return new World(
             processor.size(),
             blocks,
-            rabbits,
+            characters,
             things,
             waterAmounts,
             abilities,
@@ -199,7 +196,7 @@ public class TextWorldManip
         return new World(
             new Dimension( width, height ),
             new ArrayList<Block>(),
-            new ArrayList<Rabbit>(),
+            new ArrayList<Character>(),
             new ArrayList<Thing>(),
             new HashMap<Position, Integer>(),
             new HashMap<ItemType, Integer>(),
@@ -233,7 +230,7 @@ public class TextWorldManip
         Chars chars = new Chars( world, false );
 
         BlockRenderer.render( chars, world.blockTable );
-        RabbitRenderer.render( chars, world.rabbits, runtimeMeta );
+        CharacterRenderer.render( chars, world.rabbits, runtimeMeta );
         ThingRenderer.render( chars, world.things, runtimeMeta );
 
         if ( showChanges )
@@ -262,7 +259,7 @@ public class TextWorldManip
 
         BlockRenderer.render( chars, world.blockTable );
         WaterRenderer.render( chars, world.waterTable );
-        RabbitRenderer.render( chars, world.rabbits, runtimeMeta );
+        CharacterRenderer.render( chars, world.rabbits, runtimeMeta );
         ThingRenderer.render( chars, world.things, runtimeMeta );
 
         String[] things = charsToComplete( chars, world.comments );

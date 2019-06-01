@@ -7,12 +7,13 @@ import org.junit.*;
 
 import rabbitescape.engine.Block;
 import rabbitescape.engine.Direction;
-import rabbitescape.engine.Rabbit;
 import rabbitescape.engine.Block.Shape;
 import rabbitescape.engine.items.Item;
 import rabbitescape.engine.World;
 import rabbitescape.engine.items.ItemType;
 import rabbitescape.engine.textworld.TextWorldManip;
+import rabbitescape.engine.things.Character;
+import rabbitescape.engine.things.characters.Rabbit;
 
 public class TestWorldChanges
 {
@@ -131,13 +132,13 @@ public class TestWorldChanges
 
         World world = TextWorldManip.createWorld( worldText );
         Item tok0 = world.getTokenAt( 1, 1 );
-        Rabbit rabbit0 = world.rabbits.get( 0 );
-        Rabbit rabbit1 = world.rabbits.get( 1 );
-        Rabbit rabbit2 = world.rabbits.get( 2 );
+        Character rabbit0 = world.rabbits.get( 0 );
+        Character rabbit1 = world.rabbits.get( 1 );
+        Character rabbit2 = world.rabbits.get( 2 );
 
         // One of every type of change
         world.changes.enterRabbit(
-            new Rabbit( 1, 2, Direction.RIGHT, Rabbit.Type.RABBIT ) );
+            new Rabbit( 1, 2, Direction.RIGHT ) );
 
         world.changes.killRabbit( rabbit0 );
         world.changes.saveRabbit( rabbit1 );

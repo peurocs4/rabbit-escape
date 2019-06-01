@@ -15,7 +15,7 @@ import rabbitescape.engine.util.Position;
 import rabbitescape.engine.util.Util;
 import rabbitescape.engine.util.WaterUtil;
 
-public class WaterRegion extends Thing implements LookupItem2D
+public class WaterRegion extends Environment implements LookupItem2D
 {
     /**
      * The list of directions that this region is connected in. Note that this

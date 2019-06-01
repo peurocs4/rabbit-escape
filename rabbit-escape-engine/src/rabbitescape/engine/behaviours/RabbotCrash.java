@@ -1,10 +1,10 @@
 package rabbitescape.engine.behaviours;
 
-import rabbitescape.engine.Behaviour;
-import rabbitescape.engine.BehaviourTools;
+import rabbitescape.engine.*;
 import rabbitescape.engine.ChangeDescription.State;
-import rabbitescape.engine.Rabbit;
-import rabbitescape.engine.World;
+import rabbitescape.engine.things.Character;
+import rabbitescape.engine.things.characters.Rabbit;
+import rabbitescape.engine.things.characters.Rabbot;
 
 public class RabbotCrash extends Behaviour
 {
@@ -14,18 +14,18 @@ public class RabbotCrash extends Behaviour
     }
 
     @Override
-    public boolean checkTriggered( Rabbit rabbit, World world )
+    public boolean checkTriggered( Character character, World world )
     {
-        if ( rabbit.type == Rabbit.Type.RABBOT )
+        if ( character instanceof Rabbot )
         {
-            for ( Rabbit otherRabbit : world.rabbits )
+            for ( Character otherCharacter : world.rabbits )
             {
-                if ( otherRabbit.type == Rabbit.Type.RABBIT &&
-                    otherRabbit.x == rabbit.x &&
-                    otherRabbit.y == rabbit.y
+                if ( otherCharacter instanceof Rabbit &&
+                    otherCharacter.x == character.x &&
+                    otherCharacter.y == character.y
                 )
                 {
-                    world.changes.killRabbit( otherRabbit );
+                    world.changes.killRabbit( otherCharacter );
                     return true;
                 }
             }
@@ -47,14 +47,20 @@ public class RabbotCrash extends Behaviour
     }
 
     @Override
-    public boolean behave( World world, Rabbit rabbit, State state )
+    public boolean behave( World world, Character character, State state )
     {
         if ( state == State.RABBIT_CRASHING )
         {
-            world.changes.killRabbit( rabbit );
+            world.changes.killRabbit( character );
             return true;
         }
 
         return false;
+    }
+
+    @Override
+    public String toString()
+    {
+        return "RabbotCrash";
     }
 }

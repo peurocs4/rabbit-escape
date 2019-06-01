@@ -5,12 +5,13 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
+import rabbitescape.engine.things.Character;
 import rabbitescape.engine.Entrance;
 import rabbitescape.engine.Exit;
 import rabbitescape.engine.Fire;
 import rabbitescape.engine.IgnoreWorldStatsListener;
 import rabbitescape.engine.Pipe;
-import rabbitescape.engine.Rabbit;
+import rabbitescape.engine.things.characters.Rabbit;
 import rabbitescape.engine.Thing;
 import rabbitescape.engine.items.Item;
 import rabbitescape.engine.VoidMarkerStyle;
@@ -41,7 +42,7 @@ public class SandboxGame
      */
     public SandboxGame( World world )
     {
-        List<Rabbit> clonedRabbits = makeClonedRabbits( world.rabbits );
+        List<Character> clonedRabbits = makeClonedRabbits( world.rabbits );
         List<Thing> clonedThings = makeClonedThings( world.things );
         this.world = new World( world.size,
             world.blockTable.getListCopy(),
@@ -124,30 +125,30 @@ public class SandboxGame
     /**
      * Make a clone of a list of rabbits.
      *
-     * @param rabbits
+     * @param characters
      *            The list of rabbits to clone.
      * @return The cloned list.
      */
-    private List<Rabbit> makeClonedRabbits( List<Rabbit> rabbits )
+    private List<Character> makeClonedRabbits( List<Character> characters )
     {
-        List<Rabbit> clonedRabbits = new ArrayList<>();
-        for ( Rabbit rabbit : rabbits )
+        List<Character> clonedCharacters = new ArrayList<>();
+        for ( Character character : characters )
         {
-            clonedRabbits.add( cloneRabbit( rabbit ) );
+            clonedCharacters.add( cloneRabbit( character ) );
         }
-        return clonedRabbits;
+        return clonedCharacters;
     }
 
     /**
-     * Clone a single rabbit.
+     * Clone a single character.
      *
-     * @param rabbit
-     *            The rabbit to be cloned.
-     * @return The cloned rabbit.
+     * @param character
+     *            The character to be cloned.
+     * @return The cloned character.
      */
-    private Rabbit cloneRabbit( Rabbit rabbit )
+    private Rabbit cloneRabbit( Character character )
     {
-        return new Rabbit( rabbit.x, rabbit.y, rabbit.dir, rabbit.type );
+        return new Rabbit( character.x, character.y, character.dir);
     }
 
     /**

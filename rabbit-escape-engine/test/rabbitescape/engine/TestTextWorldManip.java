@@ -6,7 +6,6 @@ import static org.junit.Assert.fail;
 import static rabbitescape.engine.ChangeDescription.State.*;
 import static rabbitescape.engine.Tools.*;
 import static rabbitescape.engine.textworld.TextWorldManip.*;
-import static rabbitescape.engine.Rabbit.Type.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -16,7 +15,9 @@ import org.junit.Test;
 import static rabbitescape.engine.util.Util.*;
 
 import rabbitescape.engine.World.CompletionState;
-import rabbitescape.engine.items.*;
+import rabbitescape.engine.items.BashItem;
+import rabbitescape.engine.items.BridgeItem;
+import rabbitescape.engine.items.DigItem;
 import rabbitescape.engine.solution.Solution;
 import rabbitescape.engine.solution.SolutionExceptions;
 import rabbitescape.engine.solution.SolutionParser;
@@ -26,6 +27,7 @@ import rabbitescape.engine.textworld.ArrayByKeyElementMissing;
 import rabbitescape.engine.textworld.DuplicateMetaKey;
 import rabbitescape.engine.textworld.ItemsLineProcessor;
 import rabbitescape.engine.textworld.LineProcessor;
+import rabbitescape.engine.things.characters.Rabbit;
 import rabbitescape.engine.util.Util.IdxObj;
 
 public class TestTextWorldManip
@@ -349,7 +351,7 @@ public class TestTextWorldManip
         ChangeDescription desc = new ChangeDescription();
         desc.add( 0, 0, TOKEN_BASH_FALLING );
         desc.add( 1, 0, TOKEN_DIG_FALLING );
-        desc.add( 2, 0, TOKEN_BRIDGE_FALLING);
+        desc.add( 2, 0, TOKEN_BRIDGE_FALLING );
         desc.add( 3, 0, TOKEN_BLOCK_FALLING );
 
         assertThat(
@@ -534,8 +536,8 @@ public class TestTextWorldManip
         );
 
         // put 2 rabbits and 2 items all in the same place, on top of a block
-        world.rabbits.add( new Rabbit( 2, 2, Direction.RIGHT, RABBIT ) );
-        world.rabbits.add( new Rabbit( 2, 2, Direction.LEFT, RABBIT ) );
+        world.rabbits.add( new Rabbit( 2, 2, Direction.RIGHT) );
+        world.rabbits.add( new Rabbit( 2, 2, Direction.LEFT) );
         world.things.add( new BashItem( 2, 2 ) );
         world.things.add( new BridgeItem( 2, 2 ) );
 
@@ -563,16 +565,16 @@ public class TestTextWorldManip
         );
 
         // Rabbits in top left
-        world.rabbits.add( new Rabbit( 1, 1, Direction.RIGHT, RABBIT ) );
-        world.rabbits.add( new Rabbit( 1, 1, Direction.LEFT, RABBIT ) );
+        world.rabbits.add( new Rabbit( 1, 1, Direction.RIGHT) );
+        world.rabbits.add( new Rabbit( 1, 1, Direction.LEFT) );
 
         // bash and bridge in top right
         world.things.add( new BashItem( 2, 1 ) );
-        world.things.add( new BashItem( 2, 1 ) );
+        world.things.add( new BridgeItem( 2, 1 ) );
 
         // dig in bottom left and bottom right
         world.things.add( new DigItem( 1, 2 ) );
-        world.things.add( new DigItem( 2, 2) );
+        world.things.add( new DigItem( 2, 2 ) );
 
         assertThat(
             renderCompleteWorld( world, false ),

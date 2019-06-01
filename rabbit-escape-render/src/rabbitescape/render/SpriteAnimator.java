@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import rabbitescape.engine.*;
+import rabbitescape.engine.things.Character;
 import rabbitescape.engine.util.Util;
 
 public class SpriteAnimator
@@ -69,9 +70,9 @@ public class SpriteAnimator
             addThing( frameNum, thing, null, ret );
         }
 
-        for ( Rabbit rabbit : world.rabbits )
+        for ( Character character : world.rabbits )
         {
-            addThing( frameNum, rabbit, null, ret );
+            addThing( frameNum, character, null, ret );
         }
 
         for ( Thing thing : Util.filterIn( world.things, Fire.class ) )
@@ -84,7 +85,7 @@ public class SpriteAnimator
             addThing( frameNum, thing, null, ret );
         }
 
-        // TODO: probably easier if we just had a rabbit entering animation
+        // TODO: probably easier if we just had a character entering animation
         if ( frameNum == 0 )
         {
             for ( Thing thing : world.changes.rabbitsJustEntered() )

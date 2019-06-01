@@ -7,7 +7,7 @@ import java.util.Map;
 
 import rabbitescape.engine.util.WaterUtil;
 
-public class Pipe extends Thing
+public class Pipe extends Environment
 {
     private int rate;
 

@@ -873,7 +873,7 @@ public class TestDigging
             ":*=/nd"
         );
 
-        // The rabbit digs through the floor.
+        // The character digs through the floor.
         assertWorldEvolvesLike(
             world,
             3,
@@ -886,7 +886,7 @@ public class TestDigging
                 ":*=r{Digging.stepsOfDigging:1,index:1}"
             });
 
-        // The water catches up with the rabbit.
+        // The water catches up with the character.
         assertWorldEvolvesLike(
             world,
             1,
@@ -912,7 +912,7 @@ public class TestDigging
                 ":*=Nr{Falling.heightFallen:1,index:1}"
             });
 
-        // ...and the rabbit drowns in the full cell of water.
+        // ...and the character drowns in the full cell of water.
         assertWorldEvolvesLike(
             world,
             1,

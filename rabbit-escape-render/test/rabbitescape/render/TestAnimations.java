@@ -6,15 +6,12 @@ import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.*;
-import static rabbitescape.engine.Rabbit.Type.*;
 import static rabbitescape.engine.util.Util.*;
+
+import rabbitescape.engine.*;
 import rabbitescape.engine.ChangeDescription.State;
-import rabbitescape.engine.Direction;
-import rabbitescape.engine.Rabbit;
-import rabbitescape.engine.Thing;
 import rabbitescape.engine.items.BlockItem;
-import rabbitescape.engine.items.Item;
-import rabbitescape.engine.items.ItemType;
+import rabbitescape.engine.things.characters.Rabbot;
 
 public class TestAnimations
 {
@@ -54,16 +51,16 @@ public class TestAnimations
             }
         };
 
-        Rabbit rabbit = new Rabbit( 1, 2, Direction.LEFT, RABBOT );
+        Rabbot rabbot = new Rabbot( 1, 2, Direction.LEFT);
 
         for ( State s: filter(isRabbitState, list(State.values())) )
         {
-            rabbit.state = s;
+            rabbot.state = s;
 
             // Exception here if an animation is missing.
-            Animation a = AnimationLoader.load( rabbit.stateName() );
+            Animation a = AnimationLoader.load( rabbot.stateName() );
 
-            checkFramesExist( rabbit.stateName(), a );
+            checkFramesExist( rabbot.stateName(), a );
         }
     }
 

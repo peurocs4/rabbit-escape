@@ -126,7 +126,7 @@ public class TestPhysics
             physics.step( 0, GeneralPhysics.simulation_time_step_ms );
         }
 
-        // The rabbit has moved
+        // The character has moved
         assertEquals( 6, world.rabbits.get( 0 ).x );
     }
 

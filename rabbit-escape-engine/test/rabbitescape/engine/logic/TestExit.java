@@ -125,7 +125,7 @@ public class TestExit
     @Test
     public void Climb_into_exit()
     {
-        // Has a trap to see if the rabbit climbed past
+        // Has a trap to see if the character climbed past
         World world = createWorld(
             "     ",
             " O# #",
@@ -145,7 +145,7 @@ public class TestExit
                 "###  "
             });
 
-        // The rabbit escaped
+        // The character escaped
         assertThat( world.num_saved, equalTo ( 1 ) );
     }
 

@@ -252,8 +252,8 @@ public class TestTokens
     @Test
     public void Tokens_falling_onto_bridgers_in_corner_take_effect()
     {
-        // This looks like the rabbit catches it when it's off to the side,
-        // because really the rabbit is stuck in a hole, so it's not too
+        // This looks like the character catches it when it's off to the side,
+        // because really the character is stuck in a hole, so it's not too
         // bad, but inconsistent with
         // Tokens_do_not_fall_through_half_built_bridges_in_tight_corners
 
@@ -270,7 +270,7 @@ public class TestTokens
 
             "  #" + "\n" +
             "  #" + "\n" +
-            " r#" + "\n" + // Dig token hits bridge and converts rabbit
+            " r#" + "\n" + // Dig token hits bridge and converts character
             "#D#"
         );
     }

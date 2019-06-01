@@ -1,12 +1,14 @@
 package rabbitescape.engine;
 
+import rabbitescape.engine.things.characters.Rabbit;
+
 import static rabbitescape.engine.ChangeDescription.State.*;
 import static rabbitescape.engine.Direction.*;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class Entrance extends Thing
+public class Entrance extends Environment
 {
     private int[] delay = new int[1];
 
@@ -60,7 +62,7 @@ public class Entrance extends Thing
 
         timeToNextRabbit = delay[delayIndex];
 
-        Rabbit r = new Rabbit( x, y + 1, RIGHT, Rabbit.Type.RABBIT );
+        Rabbit r = new Rabbit( x, y + 1, RIGHT);
 
         world.changes.enterRabbit( r );
 

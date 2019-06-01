@@ -1,20 +1,21 @@
 package rabbitescape.engine.behaviours;
 
-import rabbitescape.engine.Behaviour;
-import rabbitescape.engine.BehaviourTools;
+import rabbitescape.engine.*;
 import rabbitescape.engine.ChangeDescription.State;
-import rabbitescape.engine.Direction;
-import rabbitescape.engine.Rabbit;
-import rabbitescape.engine.World;
+import rabbitescape.engine.behaviours.actions.Digging;
+import rabbitescape.engine.behaviours.states.Blocking;
+import rabbitescape.engine.things.Character;
+import rabbitescape.engine.things.characters.Rabbit;
+import rabbitescape.engine.things.characters.Rabbot;
 
 public class RabbotWait extends Behaviour
 {
-    private boolean within1Vertically( Rabbit otherRabbit, Rabbit rabbit )
+    private boolean within1Vertically( Character otherRabbit, Character rabbit )
     {
         return ( Math.abs( otherRabbit.y - rabbit.y ) < 2 );
     }
 
-    private boolean noseToNose( Rabbit otherRabbit, Rabbit rabbit )
+    private boolean noseToNose( Character otherRabbit, Character rabbit )
     {
         if ( 
             otherRabbit.x == rabbit.x - 1 &&
@@ -44,21 +45,21 @@ public class RabbotWait extends Behaviour
     }
 
     @Override
-    public boolean checkTriggered( Rabbit rabbit, World world )
+    public boolean checkTriggered( Character character, World world )
     {
         if (
-            rabbit.type == Rabbit.Type.RABBOT &&
-            !Blocking.isBlocking(rabbit.state) &&
-            !Digging.isDigging(rabbit.state)
+            character instanceof Rabbot &&
+            !Blocking.isBlocking(character.state) &&
+            !Digging.isDigging(character.state)
         )
         {
-            for ( Rabbit otherRabbit : world.rabbits )
+            for ( Character otherCharacter : world.rabbits )
             {
                 if (
-                    otherRabbit.type == Rabbit.Type.RABBIT &&
-                    within1Vertically( otherRabbit, rabbit ) &&
-                    noseToNose( otherRabbit, rabbit ) &&
-                    !Blocking.isBlocking(otherRabbit.state)
+                    otherCharacter instanceof Rabbit &&
+                    within1Vertically( otherCharacter, character ) &&
+                    noseToNose( otherCharacter, character ) &&
+                    !Blocking.isBlocking(otherCharacter.state)
                 )
                 {
                     return true;
@@ -85,7 +86,7 @@ public class RabbotWait extends Behaviour
     }
 
     @Override
-    public boolean behave( World world, Rabbit rabbit, State state )
+    public boolean behave( World world, Character character, State state )
     {
         if ( 
             state == State.RABBIT_WAITING_LEFT ||
@@ -96,5 +97,11 @@ public class RabbotWait extends Behaviour
         }
 
         return false;
+    }
+
+    @Override
+    public String toString()
+    {
+        return "RabbotWait";
     }
 }

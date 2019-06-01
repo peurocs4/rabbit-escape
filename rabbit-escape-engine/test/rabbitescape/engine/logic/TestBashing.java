@@ -505,7 +505,7 @@ public class TestBashing
             "####",
 
             "  jM" + "\n" + // This is a bit glitchy
-            "  s#" + "\n" + // because the rabbit floats then falls.
+            "  s#" + "\n" + // because the character floats then falls.
             "####",
 
             "   M" + "\n" +
@@ -533,7 +533,7 @@ public class TestBashing
                 ":*=r{Bashing.stepsOfBashing:1,index:1}"
             });
 
-        // Check that the water spreads and the rabbit moves through it.
+        // Check that the water spreads and the character moves through it.
         assertWorldEvolvesLike(
             world,
             1,

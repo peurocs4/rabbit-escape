@@ -240,10 +240,10 @@ public class TestDrowning
             "#    #" + "\n" +
             "# ####" + "\n" +
             "# NPP#" + "\n" +
-            "# nRN#" + "\n" + // The rabbit is drowning.
+            "# nRN#" + "\n" + // The character is drowning.
             "######",
 
-            // If the world was to continue after the death of the rabbit then
+            // If the world was to continue after the death of the character then
             // the water would flow to fill the space.
             "#    #" + "\n" +
             "# ####" + "\n" +
