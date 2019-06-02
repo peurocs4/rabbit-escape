@@ -1,6 +1,8 @@
 Rabbit Escape
 =============
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/5b80215ae37048dbb8ba8fd00bba7231)](https://app.codacy.com/app/peurocs4/rabbit-escape?utm_source=github.com&utm_medium=referral&utm_content=peurocs4/rabbit-escape&utm_campaign=Badge_Grade_Settings)
+
 Rabbit Escape is a mobile and desktop game inspired by Lemmings
 and Pingus in which you must rescue some rabbits from a hostile
 environment by giving them special abilities.
