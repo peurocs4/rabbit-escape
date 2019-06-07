@@ -5,16 +5,16 @@ import rabbitescape.engine.World;
 
 public class BrollyItem extends Item
 {
-    private static final ItemType type = ItemType.brolly;
+    public static final ItemType TYPE = ItemType.brolly;
 
     public BrollyItem( int x, int y )
     {
-        super( x, y, State.TOKEN_BROLLY_FALL_TO_SLOPE, type );
+        super( x, y, State.TOKEN_BROLLY_FALL_TO_SLOPE, TYPE );
     }
 
     public BrollyItem( int x, int y, World world )
     {
-        super( x, y, State.TOKEN_BROLLY_FALL_TO_SLOPE, type, world );
+        super( x, y, State.TOKEN_BROLLY_FALL_TO_SLOPE, TYPE, world );
     }
 
     @Override

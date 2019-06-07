@@ -1,19 +1,18 @@
 package rabbitescape.engine.logic;
 
-import static org.hamcrest.CoreMatchers.*;
-import static org.hamcrest.MatcherAssert.*;
-
-import org.junit.*;
-
+import org.junit.Test;
 import rabbitescape.engine.Block;
-import rabbitescape.engine.Direction;
 import rabbitescape.engine.Block.Shape;
-import rabbitescape.engine.items.Item;
+import rabbitescape.engine.Direction;
 import rabbitescape.engine.World;
+import rabbitescape.engine.items.Item;
 import rabbitescape.engine.items.ItemType;
 import rabbitescape.engine.textworld.TextWorldManip;
 import rabbitescape.engine.things.Character;
 import rabbitescape.engine.things.characters.Rabbit;
+
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class TestWorldChanges
 {
@@ -131,7 +130,7 @@ public class TestWorldChanges
         };
 
         World world = TextWorldManip.createWorld( worldText );
-        Item tok0 = world.getTokenAt( 1, 1 );
+        Item tok0 = world.getItemAt( 1, 1 );
         Character rabbit0 = world.rabbits.get( 0 );
         Character rabbit1 = world.rabbits.get( 1 );
         Character rabbit2 = world.rabbits.get( 2 );

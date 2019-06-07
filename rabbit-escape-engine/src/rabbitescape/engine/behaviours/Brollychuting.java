@@ -1,19 +1,15 @@
 package rabbitescape.engine.behaviours;
 
-import static rabbitescape.engine.ChangeDescription.State.*;
-import static rabbitescape.engine.items.ItemType.brolly;
-
-import java.util.Map;
-
-import rabbitescape.engine.Behaviour;
-import rabbitescape.engine.BehaviourState;
-import rabbitescape.engine.BehaviourTools;
-import rabbitescape.engine.Block;
+import rabbitescape.engine.*;
 import rabbitescape.engine.ChangeDescription.State;
 import rabbitescape.engine.behaviours.actions.Climbing;
 import rabbitescape.engine.behaviours.actions.Digging;
 import rabbitescape.engine.things.Character;
-import rabbitescape.engine.World;
+
+import java.util.Map;
+
+import static rabbitescape.engine.ChangeDescription.State.*;
+import static rabbitescape.engine.items.ItemType.brolly;
 
 public class Brollychuting extends Behaviour
 {
@@ -102,7 +98,7 @@ public class Brollychuting extends Behaviour
     {
         BehaviourTools t = new BehaviourTools( character, world );
 
-        if ( !hasAbility && t.pickUpToken( brolly, true ) )
+        if ( !hasAbility && t.pickUpItem( brolly, true ) )
         {
             return true;
         }

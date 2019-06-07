@@ -1,15 +1,15 @@
 package rabbitescape.engine.behaviours.actions;
 
-import static rabbitescape.engine.ChangeDescription.State.*;
-import static rabbitescape.engine.items.ItemType.*;
-
-import java.util.Map;
-
 import rabbitescape.engine.*;
 import rabbitescape.engine.ChangeDescription.State;
 import rabbitescape.engine.behaviours.actions.digging.IDiggingState;
 import rabbitescape.engine.behaviours.actions.digging.NotDigging;
+import rabbitescape.engine.items.DigItem;
 import rabbitescape.engine.things.Character;
+
+import java.util.Map;
+
+import static rabbitescape.engine.ChangeDescription.State.*;
 
 public class Digging extends Behaviour
 {
@@ -36,7 +36,7 @@ public class Digging extends Behaviour
     public boolean checkTriggered( Character character, World world )
     {
         BehaviourTools t = new BehaviourTools( character, world );
-        return t.pickUpToken( dig );
+        return t.pickUpItem( DigItem.TYPE );
     }
 
     @Override

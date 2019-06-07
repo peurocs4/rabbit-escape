@@ -1,15 +1,16 @@
 package rabbitescape.engine.behaviours.actions;
 
-import static rabbitescape.engine.ChangeDescription.State.*;
-import static rabbitescape.engine.Direction.*;
-import static rabbitescape.engine.items.ItemType.*;
+import rabbitescape.engine.*;
+import rabbitescape.engine.ChangeDescription.State;
+import rabbitescape.engine.behaviours.actions.climbing.IClimbingState;
+import rabbitescape.engine.behaviours.actions.climbing.NotClimbing;
+import rabbitescape.engine.things.Character;
 
 import java.util.Map;
 
-import rabbitescape.engine.*;
-import rabbitescape.engine.ChangeDescription.State;
-import rabbitescape.engine.behaviours.actions.climbing.*;
-import rabbitescape.engine.things.Character;
+import static rabbitescape.engine.ChangeDescription.State.*;
+import static rabbitescape.engine.Direction.opposite;
+import static rabbitescape.engine.items.ItemType.climb;
 
 public class Climbing extends Behaviour
 {
@@ -54,7 +55,7 @@ public class Climbing extends Behaviour
     {
         BehaviourTools t = new BehaviourTools( character, world );
 
-        return !hasAbility && t.pickUpToken( climb, true );
+        return !hasAbility && t.pickUpItem( climb, true );
     }
 
     @Override

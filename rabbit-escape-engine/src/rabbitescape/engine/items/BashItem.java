@@ -5,16 +5,16 @@ import rabbitescape.engine.World;
 
 public class BashItem extends Item
 {
-    private static final ItemType type = ItemType.bash;
+    public static final ItemType TYPE = ItemType.bash;
 
     public BashItem( int x, int y )
     {
-        super( x, y, State.TOKEN_BASH_ON_SLOPE, type );
+        super( x, y, State.TOKEN_BASH_ON_SLOPE, TYPE );
     }
 
     public BashItem( int x, int y, World world )
     {
-        super( x, y, State.TOKEN_BASH_ON_SLOPE, type, world );
+        super( x, y, State.TOKEN_BASH_ON_SLOPE, TYPE, world );
     }
 
     @Override
