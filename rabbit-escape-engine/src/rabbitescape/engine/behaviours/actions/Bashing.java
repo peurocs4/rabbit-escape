@@ -1,15 +1,16 @@
 package rabbitescape.engine.behaviours.actions;
 
-import static rabbitescape.engine.ChangeDescription.State.*;
-import static rabbitescape.engine.Direction.*;
-import static rabbitescape.engine.items.ItemType.*;
+import rabbitescape.engine.*;
+import rabbitescape.engine.ChangeDescription.State;
+import rabbitescape.engine.behaviours.actions.bashing.IBashingState;
+import rabbitescape.engine.behaviours.actions.bashing.NotBashing;
+import rabbitescape.engine.items.BashItem;
+import rabbitescape.engine.things.Character;
 
 import java.util.Map;
 
-import rabbitescape.engine.*;
-import rabbitescape.engine.ChangeDescription.State;
-import rabbitescape.engine.behaviours.actions.bashing.*;
-import rabbitescape.engine.things.Character;
+import static rabbitescape.engine.ChangeDescription.State.*;
+import static rabbitescape.engine.Direction.RIGHT;
 
 public class Bashing extends Behaviour
 {
@@ -53,7 +54,7 @@ public class Bashing extends Behaviour
     {
         BehaviourTools t = new BehaviourTools( character, world );
 
-        return t.pickUpToken( bash );
+        return t.pickUpItem( BashItem.TYPE );
     }
 
     @Override

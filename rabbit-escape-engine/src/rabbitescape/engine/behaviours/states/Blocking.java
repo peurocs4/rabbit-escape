@@ -1,13 +1,12 @@
 package rabbitescape.engine.behaviours.states;
 
-import static rabbitescape.engine.items.ItemType.*;
-
-import java.util.Map;
-
 import rabbitescape.engine.*;
 import rabbitescape.engine.ChangeDescription.State;
 import rabbitescape.engine.behaviours.states.blocking.*;
+import rabbitescape.engine.items.BlockItem;
 import rabbitescape.engine.things.Character;
+
+import java.util.Map;
 
 public class Blocking extends Behaviour
 {
@@ -42,7 +41,7 @@ public class Blocking extends Behaviour
     public boolean checkTriggered( Character character, World world )
     {
         BehaviourTools t = new BehaviourTools( character, world );
-        return t.pickUpToken( block );
+        return t.pickUpItem( BlockItem.TYPE );
     }
 
     @Override

@@ -1,20 +1,16 @@
 package rabbitescape.engine;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import rabbitescape.engine.ChangeDescription.State;
-import rabbitescape.engine.World.CantAddTokenOutsideWorld;
-import rabbitescape.engine.World.NoBlockFound;
-import rabbitescape.engine.World.NoSuchAbilityInThisWorld;
-import rabbitescape.engine.World.NoneOfThisAbilityLeft;
-import rabbitescape.engine.World.UnableToAddToken;
+import rabbitescape.engine.World.*;
 import rabbitescape.engine.items.Item;
 import rabbitescape.engine.items.ItemFactory;
 import rabbitescape.engine.items.ItemType;
 import rabbitescape.engine.things.Character;
 import rabbitescape.engine.things.characters.Rabbit;
 import rabbitescape.engine.util.Position;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class WorldChanges
 {
@@ -25,8 +21,8 @@ public class WorldChanges
     private final List<Character> charactersToEnter = new ArrayList<Character>();
     private final List<Character> charactersToKill = new ArrayList<Character>();
     private final List<Character> charactersToSave = new ArrayList<Character>();
-    private final List<Item>  tokensToAdd    = new ArrayList<Item>();
-    public  final List<Item>  tokensToRemove = new ArrayList<Item>();
+    private final List<Item> itemsToAdd = new ArrayList<Item>();
+    public final List<Item> itemsToRemove = new ArrayList<Item>();
     public  final List<Fire>   fireToRemove   = new ArrayList<Fire>();
     private final List<Block>  blocksToAdd    = new ArrayList<Block>();
     private final List<Block>  blocksToRemove = new ArrayList<Block>();
@@ -52,13 +48,13 @@ public class WorldChanges
             rabbit.calcNewState( world );
         }
         world.rabbits.addAll( charactersToEnter );
-        world.things.addAll( tokensToAdd );
+        world.things.addAll( itemsToAdd );
         world.blockTable.addAll( blocksToAdd );
 
         // Remove dead/saved rabbits, used tokens, dug out blocks
         world.rabbits.removeAll( charactersToKill );
         world.rabbits.removeAll( charactersToSave );
-        world.things.removeAll(  tokensToRemove );
+        world.things.removeAll( itemsToRemove );
         world.things.removeAll( fireToRemove );
         world.blockTable.removeAll(  blocksToRemove );
 
@@ -75,8 +71,8 @@ public class WorldChanges
         charactersToEnter.clear();
         charactersToKill.clear();
         charactersToSave.clear();
-        tokensToAdd.clear();
-        tokensToRemove.clear();
+        itemsToAdd.clear();
+        itemsToRemove.clear();
         fireToRemove.clear();
         blocksToAdd.clear();
         blocksToRemove.clear();
@@ -108,7 +104,7 @@ public class WorldChanges
         revertKillRabbits();
         revertSaveRabbits();
         revertAddTokens();
-        tokensToRemove.clear();
+        itemsToRemove.clear();
         blocksToAdd.clear();
         blocksToRemove.clear();
         waterPointsToRecalculate.clear();
@@ -161,11 +157,11 @@ public class WorldChanges
 
     private synchronized void revertAddTokens()
     {
-        for ( Item t : tokensToAdd )
+        for ( Item t : itemsToAdd )
         {
             world.abilities.put( t.getType(), world.abilities.get( t.getType() ) + 1 );
         }
-        tokensToAdd.clear();
+        itemsToAdd.clear();
     }
 
     public synchronized void addToken( int x, int y, ItemType type )
@@ -194,13 +190,13 @@ public class WorldChanges
             return;
         }
 
-        tokensToAdd.add( ItemFactory.createItem( x, y, type, world ) );
+        itemsToAdd.add( ItemFactory.createItem( x, y, type, world ) );
         world.abilities.put( type, numLeft - 1 );
     }
 
     public synchronized void removeToken( Item thing )
     {
-        tokensToRemove.add( thing );
+        itemsToRemove.add( thing );
     }
 
     public synchronized void removeFire( Fire thing )
@@ -228,7 +224,7 @@ public class WorldChanges
 
     public synchronized List<Thing> tokensAboutToAppear()
     {
-        return new ArrayList<Thing>( tokensToAdd );
+        return new ArrayList<Thing>( itemsToAdd );
     }
 
     public synchronized void explodeAllRabbits()

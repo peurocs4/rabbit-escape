@@ -1,11 +1,13 @@
 package rabbitescape.engine.behaviours;
 
-import static rabbitescape.engine.items.ItemType.*;
-import static rabbitescape.engine.ChangeDescription.State.*;
-
-import rabbitescape.engine.*;
+import rabbitescape.engine.Behaviour;
+import rabbitescape.engine.BehaviourTools;
 import rabbitescape.engine.ChangeDescription.State;
+import rabbitescape.engine.World;
+import rabbitescape.engine.items.ExplodeItem;
 import rabbitescape.engine.things.Character;
+
+import static rabbitescape.engine.ChangeDescription.State.RABBIT_EXPLODING;
 
 public class Exploding extends Behaviour
 {
@@ -18,7 +20,7 @@ public class Exploding extends Behaviour
     public boolean checkTriggered( Character character, World world )
     {
         BehaviourTools t = new BehaviourTools( character, world );
-        return t.pickUpToken( explode, true );
+        return t.pickUpItem( ExplodeItem.TYPE, true );
     }
 
     @Override

@@ -1,13 +1,5 @@
 package rabbitescape.engine;
 
-import static rabbitescape.engine.util.Util.*;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import rabbitescape.engine.err.RabbitEscapeException;
 import rabbitescape.engine.items.Item;
 import rabbitescape.engine.items.ItemType;
@@ -17,6 +9,10 @@ import rabbitescape.engine.things.characters.Rabbit;
 import rabbitescape.engine.util.Dimension;
 import rabbitescape.engine.util.LookupTable2D;
 import rabbitescape.engine.util.Position;
+
+import java.util.*;
+
+import static rabbitescape.engine.util.Util.chain;
 
 public class World
 {
@@ -378,7 +374,7 @@ public class World
         }
     }
 
-    public Item getTokenAt( int x, int y )
+    public Item getItemAt( int x, int y )
     {
         // Note it is not worth using LookupTable2D for things.
         // Handling their movement would complicate the code.
@@ -389,7 +385,7 @@ public class World
         {
             if ( thing.x == x && thing.y == y && thing instanceof Item )
             {
-                if ( !changes.tokensToRemove.contains( thing ) )
+                if ( !changes.itemsToRemove.contains( thing ) )
                 {
                     return (Item)thing;
                 }
@@ -405,7 +401,7 @@ public class World
         {
             if ( thing.x == x && thing.y == y )
             {
-                if ( !changes.tokensToRemove.contains( thing ) &&
+                if ( !changes.itemsToRemove.contains( thing ) &&
                      !changes.fireToRemove.contains( thing ) )
                 {
                     ret.add( thing );
@@ -417,7 +413,7 @@ public class World
 
     public boolean fireAt( int x, int y )
     {
-        // See note for getTokenAt() about Thing storage.
+        // See note for getItemAt() about Thing storage.
         for ( Thing thing : things )
         {
             if ( thing.x == x && thing.y == y && thing instanceof Fire )

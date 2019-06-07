@@ -5,16 +5,16 @@ import rabbitescape.engine.World;
 
 public class BlockItem extends Item
 {
-    private static final ItemType type = ItemType.block;
+    public static final ItemType TYPE = ItemType.block;
 
     public BlockItem( int x, int y )
     {
-        super( x, y, State.TOKEN_BLOCK_FALL_TO_SLOPE, type );
+        super( x, y, State.TOKEN_BLOCK_FALL_TO_SLOPE, TYPE );
     }
 
     public BlockItem( int x, int y, World world )
     {
-        super( x, y, State.TOKEN_BLOCK_FALL_TO_SLOPE, type, world );
+        super( x, y, State.TOKEN_BLOCK_FALL_TO_SLOPE, TYPE, world );
     }
 
     @Override

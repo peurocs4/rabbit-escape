@@ -1,5 +1,21 @@
 package rabbitescape.engine.logic;
 
+import org.junit.Test;
+import rabbitescape.engine.World;
+import rabbitescape.engine.World.DontStepAfterFinish;
+import rabbitescape.engine.WorldStatsListener;
+import rabbitescape.engine.items.BridgeItem;
+import rabbitescape.engine.items.Item;
+import rabbitescape.engine.items.ItemType;
+import rabbitescape.engine.textworld.TextWorldManip;
+import rabbitescape.engine.things.Character;
+import rabbitescape.engine.util.Position;
+import rabbitescape.engine.util.WaterUtil;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
@@ -8,28 +24,9 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static rabbitescape.engine.ChangeDescription.State.RABBIT_BRIDGING_RIGHT_1;
 import static rabbitescape.engine.ChangeDescription.State.RABBIT_WALKING_RIGHT;
 import static rabbitescape.engine.Tools.equalTo;
-import static rabbitescape.engine.World.CompletionState.LOST;
-import static rabbitescape.engine.World.CompletionState.RUNNING;
-import static rabbitescape.engine.World.CompletionState.WON;
+import static rabbitescape.engine.World.CompletionState.*;
 import static rabbitescape.engine.textworld.TextWorldManip.createWorld;
 import static rabbitescape.engine.util.Util.range;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
-import org.junit.Test;
-
-import rabbitescape.engine.items.BridgeItem;
-import rabbitescape.engine.items.Item;
-import rabbitescape.engine.World;
-import rabbitescape.engine.World.DontStepAfterFinish;
-import rabbitescape.engine.WorldStatsListener;
-import rabbitescape.engine.items.ItemType;
-import rabbitescape.engine.textworld.TextWorldManip;
-import rabbitescape.engine.things.Character;
-import rabbitescape.engine.util.Position;
-import rabbitescape.engine.util.WaterUtil;
 
 public class TestWorld
 {
@@ -320,7 +317,7 @@ public class TestWorld
             "###"
         );
 
-        Item item = world.getTokenAt( 1, 0 );
+        Item item = world.getItemAt( 1, 0 );
 
         // Sanity
         assertThat( item, is( notNullValue() ) );
@@ -329,11 +326,11 @@ public class TestWorld
         world.changes.removeToken( item );
 
         // This is what we are testing: it's gone
-        assertThat( world.getTokenAt( 1, 0 ), is( nullValue() ) );
+        assertThat( world.getItemAt( 1, 0 ), is( nullValue() ) );
 
         // Sanity: after a step it's still gone
         world.step();
-        assertThat( world.getTokenAt( 1, 0 ), is( nullValue() ) );
+        assertThat( world.getItemAt( 1, 0 ), is( nullValue() ) );
     }
 
     @Test
@@ -346,7 +343,7 @@ public class TestWorld
 
         world.things.add( new BridgeItem( 1, 0 ) );
 
-        Item item = world.getTokenAt( 1, 0 );
+        Item item = world.getItemAt( 1, 0 );
 
         // Sanity
         assertThat( item, is( notNullValue() ) );
@@ -355,14 +352,14 @@ public class TestWorld
         world.changes.removeToken( item );
 
         // This is what we are testing: there's another
-        Item item2 = world.getTokenAt( 1, 0 );
+        Item item2 = world.getItemAt( 1, 0 );
         assertThat( item2, is( notNullValue() ) );
 
         // Remove that one too
         world.changes.removeToken( item2 );
 
         // Now there's nothing left
-        assertThat( world.getTokenAt( 1, 0 ), is( nullValue() ) );
+        assertThat( world.getItemAt( 1, 0 ), is( nullValue() ) );
     }
 
     @Test

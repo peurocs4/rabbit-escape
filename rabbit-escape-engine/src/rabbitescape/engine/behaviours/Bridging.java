@@ -1,16 +1,16 @@
 package rabbitescape.engine.behaviours;
 
-import static rabbitescape.engine.ChangeDescription.State.*;
-import static rabbitescape.engine.items.ItemType.*;
-import static rabbitescape.engine.Block.Material.*;
-import static rabbitescape.engine.Block.Shape.*;
-
-import java.util.Map;
-
 import rabbitescape.engine.*;
 import rabbitescape.engine.ChangeDescription.State;
 import rabbitescape.engine.behaviours.states.Blocking;
+import rabbitescape.engine.items.BridgeItem;
 import rabbitescape.engine.things.Character;
+
+import java.util.Map;
+
+import static rabbitescape.engine.Block.Material.EARTH;
+import static rabbitescape.engine.Block.Shape.*;
+import static rabbitescape.engine.ChangeDescription.State.*;
 
 public class Bridging extends Behaviour
 {
@@ -46,7 +46,7 @@ public class Bridging extends Behaviour
 
             if ( possibleState != null ) // Only pick up if we can bridge
             {
-                return t.pickUpToken( bridge );
+                return t.pickUpItem( BridgeItem.TYPE );
             }
         }
         return false;
